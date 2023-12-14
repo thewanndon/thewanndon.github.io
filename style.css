@@ -86,6 +86,18 @@ svg {
     opacity: 1;
 }
 
+@media (max-width: 768px) {
+    body {
+        margin-left: 5%; /* Adjusted left margin for smaller screens */
+        margin-right: 5%; /* Adjusted right margin for smaller screens */
+        margin-top: 2%; /* Adjusted top margin for smaller screens */
+    }
+
+    .prose {
+        margin: 0px 3vw; /* Adjusted margin for smaller screens */
+    }
+}
+
 .intro-prose {
     max-width: 40rem;
     margin: 0 auto;
