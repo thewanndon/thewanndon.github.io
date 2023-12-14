@@ -88,8 +88,8 @@ svg {
 
 @media (max-width: 768px) {
     body {
-        margin-left: 5%; /* Adjusted left margin for smaller screens */
-        margin-right: 5%; /* Adjusted right margin for smaller screens */
+        margin-left: 2%; /* Adjusted left margin for smaller screens */
+        margin-right: 2%; /* Adjusted right margin for smaller screens */
         margin-top: 2%; /* Adjusted top margin for smaller screens */
     }
 
