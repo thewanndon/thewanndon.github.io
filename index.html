@@ -15,10 +15,41 @@
 
     <p>How much homework is too much? How much is too little?</p>
 
-    <p class="prose" style="margin-top:100px">Take Ian, for example. He is a hard working student in high school who would rate his <span class="boxHighlight">study load</span> to be a <b style="color:red;">5</b> out of 5.</p>
+    <p class="prose scrollVisibility" style="margin-top:100px">Take Ian, for example. He is a hard working student in high school who would rate his <span class="boxHighlight">study load</span> a <b style="color:red;">5</b> out of 5.</p>
 
-    <p class="prose" style="margin-top:100px">However, Ian would disagree that with this large amount of study load, he excels in his classes. He would rate his <span class="boxHighlight">academic performance</span> a <b style="color:orange;">2</b> out of 5.</p>
+    <p class="prose scrollVisibility" style="margin-top:100px">However, Ian would disagree that, with this large amount of study load, he excels in his classes. He would rate his <span class="boxHighlight">academic performance</span> a <b style="color:orange;">2</b> out of 5.</p>
 
+    <p class="prose scrollVisibility" style="margin-top:100px">Ian also rates his <span class="boxHighlight">depression level</span> a <b style="color:red;">20</b> out of 27, his <span class="boxHighlight">self esteem</span> a <b style="color:red;">10</b> out of 30, and his <span class="boxHighlight">anxiety level</span> a <b style="color:red;">16</b> out of 21.</p>
+
+    <p class="prose scrollVisibility" style="margin-top:100px">Now, these number's aren't actually random, and are actually the <b><u>averages</u></b> of the student's who rate their <span class="boxHighlight">study load</span> a 5 out of 5. <br /><br />These aren't great numbers for any student, and it tells a story how a high study load can hurt the studen't not only academically, but also hurts their emotions and phycological personality.</p>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const proseElements = document.querySelectorAll('.scrollVisibility');
+
+    window.addEventListener('scroll', handleScroll);
+
+    function handleScroll() {
+        proseElements.forEach(element => {
+            if (element.tagName === 'P') {
+                const rect = element.getBoundingClientRect();
+                const isVisible = (rect.top >= 0 && rect.bottom <= window.innerHeight);
+                const isAbove100px = (rect.top <= 100);
+
+                // Toggle classes based on viewport and position
+                if (isVisible && !isAbove100px) {
+                    element.style.opacity = '1';
+                } else {
+                    element.style.opacity = '0.01';
+                }
+            }
+            
+        });
+    }
+});
+
+
+    </script>
     <script src="script.js"></script>
 
 

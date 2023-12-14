@@ -15,11 +15,26 @@ p {
     font-size: 30px;
 }
 
+svg {
+    transition: opacity 1s ease, visibility 1s ease;
+    opacity: 1;
+}
+
 .boxHighlight {
     background: border-box;
     background-color: darkgray;
     border-block: solid;
     border-inline: solid;
+}
+
+.invisible {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.visible {
+    opacity: 1;
+    transition: opacity 1s ease;
 }
 
 #title {
@@ -62,7 +77,11 @@ p {
     border: 2px solid rgba(152,169,179,.38);
     -webkit-box-shadow: 0 0 16px rgba(0,0,0,.5);
     box-shadow: 0 0 16px rgba(0,0,0,.5);
-    opacity: .99
+}
+
+.scrollVisibility {
+    transition: opacity 1s ease, visibility 1s ease;
+    opacity: 1;
 }
 
 .intro-prose {

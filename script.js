@@ -12,7 +12,7 @@ const data = [
     { study_load: 5, average_academic_performance: 1.83 }
 ];
 
-const margin = { top: 100, right: 20, bottom: 50, left: 70 };
+const margin = { top: 300, right: 20, bottom: 500, left: 70 };
 const width = 400;
 const height = 300;
 
@@ -20,6 +20,7 @@ const svg = d3.select("body")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
+    .attr("class", "scrollVisibility")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -45,7 +46,7 @@ svg.append("g")
 
 // X-axis label
 svg.append("text")
-    .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.bottom-5) + ")")
+    .attr("transform", "translate(" + (width / 2) + " ," + (height + 45) + ")")
     .attr("class", "axis-label") // Use classed() to add the class
     .text("Study Load");
 
@@ -136,5 +137,25 @@ document.addEventListener('mousemove', function (event) {
 
         currentElement.style.left = mouseX - labelWidth / 2 + 'px'; // Center horizontally
         currentElement.style.top = mouseY - labelHeight - 10 + 'px'; // Offset vertically
+    }
+});
+document.addEventListener("DOMContentLoaded", function () {
+    const svgContainer = svg;
+
+    svgContainer.style("transition", "opacity 1s ease")
+
+    window.addEventListener('scroll', handleScroll);
+
+    function handleScroll() {
+        const svgRect = svgContainer.node().getBoundingClientRect();
+        const isVisible = (svgRect.top >= 0 && svgRect.bottom <= window.innerHeight);
+        const isAbove100px = (svgRect.top <= 100);
+
+        // Toggle classes based on viewport and position
+        if (isVisible && !isAbove100px) {
+            svgContainer.style("opacity", '1');
+        } else {
+            svgContainer.style("opacity", '0.01');
+        }
     }
 });
