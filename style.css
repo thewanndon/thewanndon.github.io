@@ -18,7 +18,8 @@ p {
 .boxHighlight {
     background: border-box;
     background-color: darkgray;
-    border-block: 
+    border-block: solid;
+    border-inline: solid;
 }
 
 #title {
@@ -39,6 +40,7 @@ p {
     fill: whitesmoke;
     text-shadow: 2px 2px 2px black;
     text-anchor: middle;
+    font-size: 20px;
 }
 
 .bar-label {

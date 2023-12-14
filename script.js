@@ -12,9 +12,9 @@ const data = [
     { study_load: 5, average_academic_performance: 1.83 }
 ];
 
-const margin = { top: 20, right: 20, bottom: 50, left: 50 };
-const width = 400 - margin.left - margin.right;
-const height = 300 - margin.top - margin.bottom;
+const margin = { top: 100, right: 20, bottom: 50, left: 70 };
+const width = 400;
+const height = 300;
 
 const svg = d3.select("body")
     .append("svg")
@@ -31,7 +31,7 @@ yScale.domain([0, d3.max(data, d => d.average_academic_performance)]);
 
 // Create X axis
 svg.append("g")
-    .attr("transform", "translate(0," + height + ")")
+    .attr("transform", "translate(10," + height + ")")
     .call(d3.axisBottom(xScale))
     .selectAll("text")
     .classed("axis-label", true); // Use classed() to add the class
@@ -40,11 +40,12 @@ svg.append("g")
 svg.append("g")
     .call(d3.axisLeft(yScale))
     .selectAll("text")
+    .attr("transform", "translate(-15, 0)")
     .classed("axis-label", true); // Use classed() to add the class
 
 // X-axis label
 svg.append("text")
-    .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + 20) + ")")
+    .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.bottom-5) + ")")
     .attr("class", "axis-label") // Use classed() to add the class
     .text("Study Load");
 
