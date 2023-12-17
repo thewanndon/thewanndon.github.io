@@ -464,4 +464,18 @@ svg {
     margin: 0 auto;
     position: relative;
     padding-bottom: 5vh;
-    padding: 1r…
+    padding: 1rv;
+}
+
+.tooltip {
+    position: absolute;
+    text-align: center;
+    padding: 8px;
+    font: 14px sans-serif;
+    background: #666666; /* Change background color to black */
+    color: white; /* Change text color to white */
+    border: 1px solid rgba(152,169,179,.38);
+    border-radius: 8px;
+    pointer-events: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
