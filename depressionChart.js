@@ -104,6 +104,25 @@ const margin = { top: 100, right: 20, bottom: 60, left: 70 };
         .attr("style", "font-size: 12px;")
         .text(d => d.value.toFixed(2));
 
+    // Add dotted line
+    const averageLine = svg.append("line")
+        .attr("class", "average-line")
+        .attr("x1", 0)
+        .attr("y1", yScale(12.56))
+        .attr("x2", width)
+        .attr("y2", yScale(12.56))
+        .style("stroke", "black")
+        .style("stroke-dasharray", "3,3");
+
+    // Add text label for the line
+    svg.append("text")
+        .attr("class", "average-label")
+        .attr("x", width / 2)
+        .attr("y", yScale(12.56) + 7)
+        .attr("dy", "0.35em")
+        .style("font-size", "12px")
+        .text("Overall Average: 12.56");
+
     const transitionTime = 250;
 
     function handleMouseOver(d, i) {

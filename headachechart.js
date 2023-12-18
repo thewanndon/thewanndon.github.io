@@ -1,14 +1,16 @@
 (function () {
-    var mouseX;
-    var mouseY;
+    // JavaScript source code
+    var mouseX
+    var mouseY
+
 
     const data = [
-        { study_load: 0, value: 2.46 },
-        { study_load: 1, value: 4.18 },
-        { study_load: 2, value: 3.35 },
-        { study_load: 3, value: 2.15 },
-        { study_load: 4, value: 1.74 },
-        { study_load: 5, value: 1.83 }
+        { study_load: 0, value: 2.77 },
+        { study_load: 1, value: 1.30 },
+        { study_load: 2, value: 1.81 },
+        { study_load: 3, value: 3.09 },
+        { study_load: 4, value: 3.63 },
+        { study_load: 5, value: 3.56 }
     ];
 
     const margin = { top: 100, right: 20, bottom: 60, left: 70 };
@@ -23,13 +25,13 @@
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        const tooltip = d3.select("body")
+    const tooltip = d3.select("body")
         .append("div")
         .attr("class", "tooltip")
         .style("opacity", 0)
         .style("position", "fixed") // Set position to fixed for independent positioning
         .style("pointer-events", "none"); // Make sure the tooltip doesn't interfere with mouse events
-    
+
     const xScale = d3.scaleBand().range([0, width]).padding(0.1);
     const yScale = d3.scaleLinear().range([height, 0]);
 
@@ -63,7 +65,7 @@
         .attr("x", 0 - (height / 2))
         .attr("dy", "1em")
         .attr("class", "axis-label")
-        .text("Average Academic Performance");
+        .text("Average Headache Level");
 
     // Title of graph
     svg.append("text")
@@ -72,11 +74,11 @@
         .attr("class", "axis-label")
         .attr("text-anchor", "middle")
         .attr("style", "font-size: 20px;")
-        .text("Average Academic Performance vs Study Load");
+        .text("Average Headache Level vs Study Load");
 
     const colorScale = d3.scaleSequential(d3.interpolateRgb)
-        .domain([d3.max(data, d => d.value), 0])
-        .interpolator(t => d3.interpolateRgb("green", "red")(t));
+        .domain([5, 0])
+        .interpolator(t => d3.interpolateRgb("red", "green")(t));
 
     const barWidth = xScale.bandwidth();
 
@@ -102,6 +104,25 @@
         .attr("style", "font-size: 12px;")
         .text(d => d.value.toFixed(2));
 
+    // Add dotted line
+    const averageLine = svg.append("line")
+        .attr("class", "average-line")
+        .attr("x1", 0)
+        .attr("y1", yScale(2.66))
+        .attr("x2", width)
+        .attr("y2", yScale(2.66))
+        .style("stroke", "black")
+        .style("stroke-dasharray", "3,3");
+
+    // Add text label for the line
+    svg.append("text")
+        .attr("class", "average-label")
+        .attr("x", width / 2)
+        .attr("y", yScale(2.66) + 7)
+        .attr("dy", "0.35em")
+        .style("font-size", "12px")
+        .text("Overall Average: 2.66");
+
     const transitionTime = 250;
 
     function handleMouseOver(d, i) {
@@ -109,10 +130,10 @@
         tooltip.transition()
             .duration(200)
             .style("opacity", 1);
-    
+
         // Update the tooltip content
         tooltip.html("Value: " + d.value.toFixed(2));
-    
+
         // Grow the bar and apply cubic transition
         d3.select(this)
             .transition().duration(transitionTime)
@@ -121,13 +142,13 @@
             .attr("y", d => yScale(d.value) - 10)
             .attr("height", d => height - yScale(d.value) + 10);
     }
-    
+
     function handleMouseOut(d, i) {
         // Hide the tooltip
         tooltip.transition()
             .duration(500)
             .style("opacity", 0);
-    
+
         // Shrink the bar and apply cubic transition
         d3.select(this)
             .transition().duration(transitionTime)
@@ -146,9 +167,9 @@
 
         // Iterate through all elements with the class
 
-         // Update the tooltip position based on mouse coordinates
-        tooltip.style("left", (mouseX+5) + "px")
-        .style("top", (mouseY-35) + "px"); // Adjust the vertical offset as needed
+        // Update the tooltip position based on mouse coordinates
+        tooltip.style("left", (mouseX + 5) + "px")
+            .style("top", (mouseY - 35) + "px"); // Adjust the vertical offset as needed
 
 
         for (let i = 0; i < elements.length; i++) {

@@ -5,12 +5,12 @@ var mouseY
 
 
 const data = [
-    { study_load: 0, value: 10.21 },
-    { study_load: 1, value: 4.94 },
-    { study_load: 2, value: 8.27 },
-    { study_load: 3, value: 13.89 },
-    { study_load: 4, value: 16.15 },
-    { study_load: 5, value: 15.67 }
+    { study_load: 0, value: 2.24 },
+    { study_load: 1, value: 1.26 },
+    { study_load: 2, value: 1.83 },
+    { study_load: 3, value: 3.27 },
+    { study_load: 4, value: 3.97 },
+    { study_load: 5, value: 3.80 }
 ];
 
 const margin = { top: 100, right: 20, bottom: 60, left: 70 };
@@ -36,7 +36,7 @@ const margin = { top: 100, right: 20, bottom: 60, left: 70 };
     const yScale = d3.scaleLinear().range([height, 0]);
 
     xScale.domain(data.map(d => d.study_load));
-    yScale.domain([0, 30]);
+    yScale.domain([0, 5]);
 
     // Create X axis
     svg.append("g")
@@ -65,7 +65,7 @@ const margin = { top: 100, right: 20, bottom: 60, left: 70 };
         .attr("x", 0 - (height / 2))
         .attr("dy", "1em")
         .attr("class", "axis-label")
-        .text("Average Anxiety Level");
+        .text("Average Reported Bullying");
 
     // Title of graph
     svg.append("text")
@@ -74,10 +74,10 @@ const margin = { top: 100, right: 20, bottom: 60, left: 70 };
         .attr("class", "axis-label")
         .attr("text-anchor", "middle")
         .attr("style", "font-size: 20px;")
-        .text("Average Anxiety Level vs Study Load");
+        .text("Average Reported Bullying vs Study Load");
 
     const colorScale = d3.scaleSequential(d3.interpolateRgb)
-        .domain([21, 0])
+        .domain([5, 0])
         .interpolator(t => d3.interpolateRgb("red", "green")(t));
 
     const barWidth = xScale.bandwidth();
@@ -108,9 +108,9 @@ const margin = { top: 100, right: 20, bottom: 60, left: 70 };
     const averageLine = svg.append("line")
         .attr("class", "average-line")
         .attr("x1", 0)
-        .attr("y1", yScale(11.06))
+        .attr("y1", yScale(2.62))
         .attr("x2", width)
-        .attr("y2", yScale(11.06))
+        .attr("y2", yScale(2.62))
         .style("stroke", "black")
         .style("stroke-dasharray", "3,3");
 
@@ -118,10 +118,10 @@ const margin = { top: 100, right: 20, bottom: 60, left: 70 };
     svg.append("text")
         .attr("class", "average-label")
         .attr("x", width / 2)
-        .attr("y", yScale(11.06) + 7)
+        .attr("y", yScale(2.62) + 7)
         .attr("dy", "0.35em")
         .style("font-size", "12px")
-        .text("Overall Average: 11.06");
+        .text("Overall Average: 2.62");
 
     const transitionTime = 250;
 
